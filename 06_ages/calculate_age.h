@@ -1,1 +1,1 @@
-int calculateAge(int year);
+int calculateAge(int birthYear);

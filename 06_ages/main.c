@@ -2,5 +2,5 @@
 #include "calculate_age.h"
 
 int main(void) {
-	printf("%u \n", calculateAge(1983));
+	printf("%u \n", calculateAge(1994));
 }
