@@ -3,10 +3,9 @@
 #include <string.h>
 
 
-int main () 
+int main ()
 {
-	int age; 
+	int age = 37; 
 	int *address = &age;
-	*address = 37;
-	printf("%u \n", *address);
+	printf("%u \n", *address); 
 }
