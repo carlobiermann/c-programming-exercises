@@ -1,0 +1,1 @@
+int getStopN(void);
