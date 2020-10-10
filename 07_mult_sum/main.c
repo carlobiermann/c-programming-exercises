@@ -1,10 +1,15 @@
 #include <stdio.h>
-#include "getStopN.h"
+#include <stdlib.h>
+#include "functions.h"
 
 int main (void) 
 {
-	int stopNumber; 
-	stopNumber = getStopN();
+	char op;
+	int num;
+	int res;
 
-	printf("The number assigned to stopNumber from a function in a seperate file is: %d \n", stopNumber);
+	readInput(&num, &op);
+	performCalc(num,op);
+
+	return 0; 
 }
