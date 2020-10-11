@@ -1,16 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include "functions.h"
 
-int main() 
+int main(void) 
 {
-	int i, j, n;
+	int num; 
 
-	n = 300; 
-	j = 1;
-
-	for(i = n; i <= (n*100); i += n) {
-		printf("%5d   x %5d    = %8d\n", n, j, i);
-		j++;
-	}
-
-	return 0; 
+	readInput(&num);	
+	printTable(num);
 }
