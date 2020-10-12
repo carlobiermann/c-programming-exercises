@@ -38,11 +38,11 @@ void readValues(int *row, int *col)
 	*col = inputCol;
 }
 
-void writeTable(int row, int col, int (*arr)[col])
+void writeTable(int row, int col, int (*arr)[5])
 {
 	int i, j;
-	i = row-1;
-	j = col-1;	
+	i = row;
+	j = col;	
 	
 	arr[i][j] = 1;
 }
