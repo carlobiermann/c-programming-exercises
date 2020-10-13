@@ -1,48 +1,58 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void readInput (int *num) 
-{
-	int inputNum; 
-
-	printf("Please enter a field: \n");
-	scanf("%d", &inputNum);
-
-	*num = inputNum;
-}
-
-void printTable(int rows, int cols, int arr[][5])
+void printTable(int rows, int cols, char arr[][5])
 {
 	int i,j;
 
 	for(int i=0; i < rows; i++){
 		for(int j=0; j < cols; j++){
-			printf("%5d",arr[i][j]);
+			printf("%5c",arr[i][j]);
 		}
 		printf("\n");
 	}
 }
 
-void readValues(int *row, int *col)
+void readPlayerOne(int *row, int *col)
 {
 	int inputRow;
 	int inputCol;
 
-	printf("Select a row: \n");
+	printf("Player 1 Select a row: \n");
 	scanf("%d", &inputRow);
 
-	printf("Select a column: \n");
+	printf("Player 1 Select a column: \n");
 	scanf("%d", &inputCol);
 
 	*row = inputRow;
 	*col = inputCol;
 }
 
-void writeTable(int row, int col, int (*arr)[5])
+void readPlayerTwo(int *row, int *col)
+{
+	int inputRow;
+	int inputCol;
+
+	printf("Player 2 Select a row: \n");
+	scanf("%d", &inputRow);
+	
+	printf("Player 2 Select a column: \n");
+	scanf("%d", &inputCol);	
+
+	*row = inputRow;
+	*col = inputCol;
+}
+
+void writeTable(int row, int col, int *counter, char (*arr)[5])
 {
 	int i, j;
 	i = row;
 	j = col;	
-	
-	arr[i][j] = 1;
+
+	if (*counter%2 == 0)
+		arr[i][j] = 'X';
+	else
+		arr[i][j] = 'O';
+
+	*counter += 1;
 }

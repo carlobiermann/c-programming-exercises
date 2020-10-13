@@ -4,28 +4,40 @@
 
 int main(void)
 {
-	int gameTable[][5] = {{0,1,2,3,4},{1,0,0,0,0},{2,0,0,0,0},{3,0,0,0,0},{4,0,0,0,0}};
-	int m = 5;
-	int n = 5;
+	char gameTable[][5] = {{'_','1','2','3','4'},{'1','_','_','_','_'},{'2','_','_','_','_'},{'3','_','_','_','_'}};
+	int m = 4;
+	int n = 4;
 
 	int uRow;
 	int uCol;
 
+	int counter = 1;
+
 	printTable(m,n, gameTable);
 	
-	readValues(&uRow, &uCol);
-	writeTable(uRow, uCol, gameTable);
-	printTable(5,5, gameTable);
+	readPlayerOne(&uRow, &uCol);
+	writeTable(uRow, uCol, &counter, gameTable);
+	printTable(4,4, gameTable);
 	printf("selected row: %d selected col: %d \n",uRow, uCol);
 
-	readValues(&uRow, &uCol);
-	writeTable(uRow, uCol, gameTable);
-	printTable(5,5, gameTable);
+	readPlayerTwo(&uRow, &uCol);
+	writeTable(uRow, uCol, &counter, gameTable);
+	printTable(4,4, gameTable);
 	printf("selected row: %d selected col: %d \n",uRow, uCol);
 
-	readValues(&uRow, &uCol);
-	writeTable(uRow, uCol, gameTable);
-	printTable(5,5, gameTable);
+	readPlayerOne(&uRow, &uCol);
+	writeTable(uRow, uCol, &counter, gameTable);
+	printTable(4,4, gameTable);
+	printf("selected row: %d selected col: %d \n",uRow, uCol);
+
+	readPlayerTwo(&uRow, &uCol);
+	writeTable(uRow, uCol,&counter, gameTable);
+	printTable(4,4, gameTable);
+	printf("selected row: %d selected col: %d \n",uRow, uCol);
+
+	readPlayerOne(&uRow, &uCol);
+	writeTable(uRow, uCol, &counter, gameTable);
+	printTable(4,4, gameTable);
 	printf("selected row: %d selected col: %d \n",uRow, uCol);
 
 	return 0;
