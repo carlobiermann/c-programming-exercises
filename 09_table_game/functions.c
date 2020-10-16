@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+
+#define SSIZE (4)
+char field[SSIZE]; /* 'R','C','\0','\n' from stdin */
 
 void printTable(int rows, int cols, char arr[][4])
 {
@@ -17,52 +21,64 @@ void readPlayerOne(int *row, int *col)
 {
 	int inputRow;
 	int inputCol;
-
-	char field[3] =  {'_','_','\n'};
 	char r;
 	char c;
+	bool inputValidityRow = false;
+	bool inputValidityCol = false;
 
-	printf("Player 1 Select a field: \n");
-	scanf("%s",field);
-	r = field[0];
-	c = field[1];
+	while((inputValidityRow == false) || (inputValidityCol == false)){
 
-	switch(r)
-	{
-		case 'A':
-			inputRow = 1;
-			break;
-		case 'B': 
-			inputRow = 2;
-			break;
-		case 'C':
-			inputRow = 3;
-			break;
-		default: 
-			printf("Invalid input \n");
-			break;
-	}
-
-	switch(c)
-	{
-		case '1':
-			inputCol = 1;
-			break;
-		case '2':
-			inputCol = 2;
-			break;
-		case '3':
-			inputCol = 3;
-			break;
-		default: 
-			printf("Invalid input \n");
-			break;
-	}
+		fgets(field, SSIZE, stdin);	
+		r = field[0];
+		c = field[1];
 	
+		switch(r)
+		{
+			case 'A':
+				inputRow = 1;
+				inputValidityRow = true;
+				*row = inputRow;
+				break;
+			case 'B': 
+				inputRow = 2;
+				inputValidityRow = true;
+				*row = inputRow;
+				break;
+			case 'C':
+				inputRow = 3;
+				inputValidityRow = true;
+				*row = inputRow;
+				break;
+			default: 
+				printf("Invalid input \n");
+				inputValidityRow = false;
+				break;
+		}
 
+		switch(c)
+		{
+			case '1':
+				inputCol = 1;
+				inputValidityCol = true;
+				*col = inputCol;
+				break;
+			case '2':
+				inputCol = 2;
+				inputValidityCol = true;
+				*col = inputCol;
+				break;
+			case '3':
+				inputCol = 3;
+				inputValidityCol = true;
+				*col = inputCol;
+				break;
+			default: 
+				printf("Invalid input \n");
+				inputValidityCol = false;
+				break;
+		}
 	
-	*row = inputRow;
-	*col = inputCol;
+	}
 }
 
 void writeTable(int row, int col, int *counter, char (*arr)[4])
