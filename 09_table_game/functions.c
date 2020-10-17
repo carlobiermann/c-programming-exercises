@@ -23,61 +23,54 @@ void readPlayerOne(int *row, int *col)
 	int inputCol;
 	char r;
 	char c;
-	bool inputValidityRow = false;
-	bool inputValidityCol = false;
+	bool wrongRow = true;
+	bool wrongCol = true;
 
-	while((inputValidityRow == false) || (inputValidityCol == false)){
+	while(wrongRow || wrongCol){
 
 		fgets(field, SSIZE, stdin);	
 		r = field[0];
 		c = field[1];
 	
-		switch(r)
-		{
+		switch(r){
 			case 'A':
 				inputRow = 1;
-				inputValidityRow = true;
-				*row = inputRow;
+				wrongRow = false;
 				break;
 			case 'B': 
 				inputRow = 2;
-				inputValidityRow = true;
-				*row = inputRow;
+				wrongRow = false;
 				break;
 			case 'C':
 				inputRow = 3;
-				inputValidityRow = true;
-				*row = inputRow;
+				wrongRow = false;
 				break;
 			default: 
 				printf("Invalid input \n");
-				inputValidityRow = false;
+				wrongRow = true;
 				break;
 		}
 
-		switch(c)
-		{
+		switch(c){
 			case '1':
 				inputCol = 1;
-				inputValidityCol = true;
-				*col = inputCol;
+				wrongCol = false;
 				break;
 			case '2':
 				inputCol = 2;
-				inputValidityCol = true;
-				*col = inputCol;
+				wrongCol = false;
 				break;
 			case '3':
 				inputCol = 3;
-				inputValidityCol = true;
-				*col = inputCol;
+				wrongCol = false;
 				break;
 			default: 
 				printf("Invalid input \n");
-				inputValidityCol = false;
+				wrongCol = true;
 				break;
 		}
-	
+		*row = inputRow;
+		*col = inputCol;	
 	}
 }
 
