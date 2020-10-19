@@ -89,6 +89,20 @@ void readPlayerOne(int *row, int *col)
 	*col = inputCol;
 }
 
+bool fieldOccupied(int row, int col, char (*arr)[4])
+{
+	char field;
+	field = arr[row][col];
+
+	if(field != '_'){
+		printf("Field is already taken \n");
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
 void writeTable(int row, int col, int *counter, char (*arr)[4])
 {
 	int i, j;

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "functions.h"
 
 int main(void)
@@ -14,33 +15,21 @@ int main(void)
 	int counter = 1;
 
 	printTable(m,n, gameTable);
+
+	do{	
+		readPlayerOne(&uRow, &uCol);
+	} while (fieldOccupied(uRow, uCol, gameTable));
 	
-	readPlayerOne(&uRow, &uCol);
 	writeTable(uRow, uCol, &counter, gameTable);
 	printTable(4,4, gameTable);
-	printf("selected row: %d selected col: %d \n",uRow, uCol);
 
-	readPlayerOne(&uRow, &uCol);
+	do{
+	 	readPlayerOne(&uRow, &uCol);
+	} while (fieldOccupied(uRow, uCol, gameTable));
+
 	writeTable(uRow, uCol, &counter, gameTable);
 	printTable(4,4, gameTable);
-	printf("selected row: %d selected col: %d \n",uRow, uCol);
 
-/*
-	readPlayerOne(&uRow, &uCol);
-	writeTable(uRow, uCol, &counter, gameTable);
-	printTable(4,4, gameTable);
-	printf("selected row: %d selected col: %d \n",uRow, uCol);
-
-	readPlayerOne(&uRow, &uCol);
-	writeTable(uRow, uCol,&counter, gameTable);
-	printTable(4,4, gameTable);
-	printf("selected row: %d selected col: %d \n",uRow, uCol);
-
-	readPlayerOne(&uRow, &uCol);
-	writeTable(uRow, uCol, &counter, gameTable);
-	printTable(4,4, gameTable);
-	printf("selected row: %d selected col: %d \n",uRow, uCol);
-*/
 	return 0;
 
 }
