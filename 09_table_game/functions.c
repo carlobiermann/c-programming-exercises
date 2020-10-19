@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 #define SSIZE (4)
 char field[SSIZE]; /* 'R','C','\0','\n' from stdin */
@@ -21,13 +22,19 @@ void readPlayerOne(int *row, int *col)
 {
 	int inputRow;
 	int inputCol;
+	int printCounter = 0;
 	char r;
 	char c;
+	char errMsg[26];
 	bool wrongRow = true;
 	bool wrongCol = true;
 
-	while(wrongRow || wrongCol){
+	errMsg[0] = 0;
+	
+	printf("Please enter a field: \n");
 
+	while(wrongRow || wrongCol){
+		
 		fgets(field, SSIZE, stdin);	
 		r = field[0];
 		c = field[1];
@@ -45,9 +52,10 @@ void readPlayerOne(int *row, int *col)
 				inputRow = 3;
 				wrongRow = false;
 				break;
-			default: 
-				printf("Invalid input \n");
-				wrongRow = true;
+			default:
+			       	wrongRow = true;	
+				if(errMsg[0] == 0)
+					strcpy(errMsg,"Invalid input, try again:");
 				break;
 		}
 
@@ -64,14 +72,21 @@ void readPlayerOne(int *row, int *col)
 				inputCol = 3;
 				wrongCol = false;
 				break;
-			default: 
-				printf("Invalid input \n");
-				wrongCol = true;
+			default:
+			       	wrongCol = true;
+				if(errMsg[0] == 0)
+					strcpy(errMsg,"Invalid input, try again:");
 				break;
 		}
-		*row = inputRow;
-		*col = inputCol;	
+
+		/* This will only print once after a false input, haven't found a way to flush char array from stdin yet */
+		if((errMsg[0] != 0) && (printCounter < 1)){
+			printf("%s \n", errMsg);
+			printCounter++;	
+		}
 	}
+	*row = inputRow;
+	*col = inputCol;
 }
 
 void writeTable(int row, int col, int *counter, char (*arr)[4])
