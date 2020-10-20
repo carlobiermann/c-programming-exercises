@@ -3,8 +3,9 @@
 #include <stdbool.h>
 #include <string.h>
 
+/*
 #define SSIZE (4)
-char field[SSIZE]; /* 'R','C','\0','\n' from stdin */
+char field[SSIZE]; 'R','C','\0','\n' from stdin */
 
 void printTable(int rows, int cols, char arr[][4])
 {
@@ -22,67 +23,78 @@ void readPlayerOne(int *row, int *col)
 {
 	int inputRow;
 	int inputCol;
-	int printCounter = 0;
-	char r;
-	char c;
+	int r = 0;
+	int c = 0;
 	char errMsg[26];
 	bool wrongRow = true;
 	bool wrongCol = true;
-
-	errMsg[0] = 0;
 	
 	printf("Please enter a field: \n");
 
 	while(wrongRow || wrongCol){
 		
-		fgets(field, SSIZE, stdin);	
-		r = field[0];
-		c = field[1];
+		int ch = 0;
+		int readCounter = 1;
+		errMsg[0] = 0;
+
+		while((ch = getchar()) != EOF && (ch != '\n')){
+			if(readCounter == 1){
+				r = ch;
+			}
+			else if (readCounter == 2){
+				c = ch;
+			} else {
+				r = ch;
+				c = ch;
+			}	
+			readCounter++;
+		}
 	
 		switch(r){
-			case 'A':
+			case 65:
 				inputRow = 1;
 				wrongRow = false;
 				break;
-			case 'B': 
+			case 66: 
 				inputRow = 2;
 				wrongRow = false;
 				break;
-			case 'C':
+			case 67:
 				inputRow = 3;
 				wrongRow = false;
 				break;
 			default:
 			       	wrongRow = true;	
-				if(errMsg[0] == 0)
+				if(errMsg[0] == 0){
 					strcpy(errMsg,"Invalid input, try again:");
+				}
 				break;
 		}
 
 		switch(c){
-			case '1':
+			case 49:
 				inputCol = 1;
 				wrongCol = false;
 				break;
-			case '2':
+			case 50:
 				inputCol = 2;
 				wrongCol = false;
 				break;
-			case '3':
+			case 51:
 				inputCol = 3;
 				wrongCol = false;
 				break;
 			default:
 			       	wrongCol = true;
-				if(errMsg[0] == 0)
+				if(errMsg[0] == 0){
 					strcpy(errMsg,"Invalid input, try again:");
+				}
 				break;
 		}
 
 		/* This will only print once after a false input, haven't found a way to flush char array from stdin yet */
-		if((errMsg[0] != 0) && (printCounter < 1)){
+		if(errMsg[0] != 0){
 			printf("%s \n", errMsg);
-			printCounter++;	
 		}
 	}
 	*row = inputRow;
@@ -116,3 +128,5 @@ void writeTable(int row, int col, int *counter, char (*arr)[4])
 
 	*counter += 1;
 }
+
+
