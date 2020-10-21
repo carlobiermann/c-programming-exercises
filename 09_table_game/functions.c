@@ -3,10 +3,6 @@
 #include <stdbool.h>
 #include <string.h>
 
-/*
-#define SSIZE (4)
-char field[SSIZE]; 'R','C','\0','\n' from stdin */
-
 void printTable(int rows, int cols, char arr[][4])
 {
 	int i,j;
@@ -33,7 +29,7 @@ void readField(int *row, int *col)
 	while(wrongRow || wrongCol){
 		errMsg[0] = 0;
 		readCounter = 0;
-		
+
 		/* Reads input characters one by one and discards them from stdin */
 		while((asciiValue = getchar()) != EOF && (asciiValue != '\n')){
 			if(readCounter == 0)
@@ -42,7 +38,6 @@ void readField(int *row, int *col)
 				inputCol = asciiValue;
 			readCounter++;
 		}
-
 		switch(inputRow){
 			case 65:
 				*row = 1;
@@ -62,7 +57,6 @@ void readField(int *row, int *col)
 					strcpy(errMsg,"Invalid input, try again:");
 				break;
 		}
-
 		switch(inputCol){
 			case 49:
 				*col = 1;
@@ -82,7 +76,6 @@ void readField(int *row, int *col)
 					strcpy(errMsg,"Invalid input, try again:");
 				break;
 		}
-
 		if(errMsg[0] != 0)
 			printf("%s \n", errMsg);
 	}
@@ -96,15 +89,15 @@ bool occupied(int row, int col, char (*arr)[4])
 	if(field != '_'){
 		printf("Field is already occupied \n");
 		return true;
-	} else {
+	} else
 		return false;
-	}
 }
 
 
 void writeTable(int row, int col, int *counter, char (*arr)[4])
 {
 	int i, j;
+
 	i = row;
 	j = col;	
 
