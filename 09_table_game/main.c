@@ -17,15 +17,15 @@ int main(void)
 	printTable(m,n, gameTable);
 
 	do{	
-		readPlayerOne(&uRow, &uCol);
-	} while (fieldOccupied(uRow, uCol, gameTable));
+		readField(&uRow, &uCol);
+	} while (occupied(uRow, uCol, gameTable));
 	
 	writeTable(uRow, uCol, &counter, gameTable);
 	printTable(4,4, gameTable);
 
 	do{
-	 	readPlayerOne(&uRow, &uCol);
-	} while (fieldOccupied(uRow, uCol, gameTable));
+	 	readField(&uRow, &uCol);
+	} while (occupied(uRow, uCol, gameTable));
 
 	writeTable(uRow, uCol, &counter, gameTable);
 	printTable(4,4, gameTable);
