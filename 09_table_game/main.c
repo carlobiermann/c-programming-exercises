@@ -12,22 +12,22 @@ int main(void)
 	int uRow;
 	int uCol;
 
-	int counter = 1;
+	int tracker = 1;
 
 	printTable(m,n, gameTable);
 
 	do{	
-		readField(&uRow, &uCol);
+		readField(&uRow, &uCol, tracker);
 	} while (occupied(uRow, uCol, gameTable));
 	
-	writeTable(uRow, uCol, &counter, gameTable);
+	writeTable(uRow, uCol, &tracker, gameTable);
 	printTable(4,4, gameTable);
 
 	do{
-	 	readField(&uRow, &uCol);
+	 	readField(&uRow, &uCol, tracker);
 	} while (occupied(uRow, uCol, gameTable));
 
-	writeTable(uRow, uCol, &counter, gameTable);
+	writeTable(uRow, uCol, &tracker, gameTable);
 	printTable(4,4, gameTable);
 
 	return 0;

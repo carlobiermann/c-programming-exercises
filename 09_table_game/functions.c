@@ -7,14 +7,14 @@ void printTable(int rows, int cols, char arr[][4])
 {
 	int i,j;
 
-	for(int i=0; i < rows; i++){
-		for(int j=0; j < cols; j++)
+	for(i=0; i < rows; i++){
+		for(j=0; j < cols; j++)
 			printf("%5c",arr[i][j]);
 		printf("\n");
 	}
 }
 
-void readField(int *row, int *col)
+void readField(int *row, int *col, int tracker)
 {
 	bool wrongRow = true;
 	bool wrongCol = true;
@@ -23,8 +23,11 @@ void readField(int *row, int *col)
 	int asciiValue = 0;
 	int inputRow = 0;
 	int inputCol = 0;
-	
-	printf("Please enter a field: \n");
+
+	if(tracker %2 != 0)	
+		printf("PLAYER 1: Please enter a field: \n");
+	else
+		printf("PLAYER 2: Please enter a field: \n");
 
 	while(wrongRow || wrongCol){
 		errMsg[0] = 0;
@@ -34,7 +37,7 @@ void readField(int *row, int *col)
 		while((asciiValue = getchar()) != EOF && (asciiValue != '\n')){
 			if(readCounter == 0)
 				inputRow = asciiValue;
-			else if (readCounter == 1)
+			else if (readCounter == 1) 
 				inputCol = asciiValue;
 			readCounter++;
 		}
@@ -87,7 +90,7 @@ bool occupied(int row, int col, char (*arr)[4])
 	field = arr[row][col];
 
 	if(field != '_'){
-		printf("Field is already occupied \n");
+		printf("Field is already occupied, try again: \n");
 		return true;
 	} else
 		return false;
@@ -101,7 +104,7 @@ void writeTable(int row, int col, int *counter, char (*arr)[4])
 	i = row;
 	j = col;	
 
-	if (*counter%2 == 0)
+	if (*counter%2 != 0)
 		arr[i][j] = 'X';
 	else
 		arr[i][j] = 'O';
