@@ -10,10 +10,10 @@ struct game
 	char gameTable[][4];
 };
 
-struct game tictactoe;
 
 int main()
 {
+	struct game tictactoe;
 	int m = 4;
 	int n = 4;
 
@@ -22,7 +22,7 @@ int main()
 	tictactoe.winsPlayerTwo = 0;
 	tictactoe.gameTable[][4] = {{' ','1','2','3'},{'A','_','_','_'},{'B','_','_','_'},{'C','_','_','_'}};
 
-	printGame(m, n);	
+	printGame(m, n, &tictactoe);	
 
 
 }
