@@ -2,6 +2,7 @@
 #define FUNCTIONS_H
 
 typedef struct Game{
+	char table[4][4];
 	int score;
 } gameStruct;
 
