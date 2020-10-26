@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "functions.h"
 
-void printGame(int rows, int cols, struct game *tictactoe)
+void printGame(gameStruct *tictactoe)
 {
-	int i,j;
+	printf("Score is: %d \n", tictactoe->score);
+}
 
-	for(i=0; i < rows; i++){
-		for(j=0; j < cols; j++)
-			printf("%5c", tictactoe->gameTable[i][j]);
-		printf("\n");
-	}
+void editGame(gameStruct *tictactoe)
+{
+	tictactoe->score = 100;
 }
