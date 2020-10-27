@@ -2,19 +2,28 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include "functions.h"
 
-void printTable(int rows, int cols, char arr[][4])
+void printGame(game *tictactoe)
 {
 	int i,j;
 
-	for(i=0; i < rows; i++){
-		for(j=0; j < cols; j++)
-			printf("%5c",arr[i][j]);
+	printf("\n");
+	printf("     Games:    %d \n", tictactoe->nGames);
+	printf("     Player 1: %d wins \n", tictactoe->playerOneScore);
+	printf("     Player 2: %d wins \n", tictactoe->playerTwoScore);
+	printf("\n");
+	for(i = 0; i < 4; i++){
+		for(j = 0; j < 4; j++)
+			printf("%5c", tictactoe->table[i][j]);
 		printf("\n");
 	}
+	printf("\n");
 }
 
-void readField(int *row, int *col, int tracker)
+/*
+
+void readField(int *row, int *col, game *tictactoe)
 {
 	bool wrongRow = true;
 	bool wrongCol = true;
@@ -33,7 +42,8 @@ void readField(int *row, int *col, int tracker)
 		errMsg[0] = 0;
 		readCounter = 0;
 
-		/* Reads input characters one by one and discards them from stdin */
+		*/
+		/* Reads input characters one by one and discards them from stdin *//*
 		while((asciiValue = getchar()) != EOF && (asciiValue != '\n')){
 			if(readCounter == 0)
 				inputRow = asciiValue;
@@ -84,7 +94,7 @@ void readField(int *row, int *col, int tracker)
 	}
 }
 
-bool occupied(int row, int col, char (*arr)[4])
+bool occupied(int row, int col, game *tictactoe)
 {
 	char field;
 	field = arr[row][col];
@@ -97,7 +107,7 @@ bool occupied(int row, int col, char (*arr)[4])
 }
 
 
-void writeTable(int row, int col, int *counter, char (*arr)[4])
+void writeTable(int row, int col, game *tictactoe)
 {
 	int i, j;
 
@@ -112,4 +122,5 @@ void writeTable(int row, int col, int *counter, char (*arr)[4])
 	*counter += 1;
 }
 
+*/
 
