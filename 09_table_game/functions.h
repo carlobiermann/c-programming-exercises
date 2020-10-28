@@ -10,12 +10,12 @@ typedef struct Game{
 } game;
 
 void printGame(game *tictactoe);
-
-#endif
-/*
 void readField(int *row, int *col, game *tictactoe);
 bool occupied(int row, int col, game *tictactoe);
 void writeTable(int row, int col, game *tictactoe);
-*/
+
+
+#endif
+
 
 

@@ -8,6 +8,8 @@ int main()
 	game tictactoe;
 
 	int i,j;
+	int uRow;
+	int uCol;
 
 	tictactoe.nGames = 0;
 	tictactoe.playerOneScore = 0;
@@ -28,12 +30,6 @@ int main()
 			tictactoe.table[i][j] = '_';
 	}
 
-	printGame(&tictactoe);
-
-/*
-	int uRow;
-	int uCol;
-
 	do{	
 		readField(&uRow, &uCol, &tictactoe);
 	} while (occupied(uRow, uCol, &tictactoe));
@@ -42,13 +38,13 @@ int main()
 	printGame(&tictactoe);
 
 
-	do{
-	 	readField(&uRow, &uCol, tracker);
-	} while (occupied(uRow, uCol, gameTable));
-
-	writeTable(uRow, uCol, &tracker, gameTable);
-	printTable(4,4, gameTable);
-*/
+	do{	
+		readField(&uRow, &uCol, &tictactoe);
+	} while (occupied(uRow, uCol, &tictactoe));
+	
+	writeTable(uRow, uCol, &tictactoe);
+	printGame(&tictactoe);
+	
 	return 0;
 
 }

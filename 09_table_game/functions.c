@@ -21,8 +21,6 @@ void printGame(game *tictactoe)
 	printf("\n");
 }
 
-/*
-
 void readField(int *row, int *col, game *tictactoe)
 {
 	bool wrongRow = true;
@@ -33,7 +31,7 @@ void readField(int *row, int *col, game *tictactoe)
 	int inputRow = 0;
 	int inputCol = 0;
 
-	if(tracker %2 != 0)	
+	if(tictactoe->tracker%2 != 0)	
 		printf("PLAYER 1: Please enter a field: \n");
 	else
 		printf("PLAYER 2: Please enter a field: \n");
@@ -42,8 +40,8 @@ void readField(int *row, int *col, game *tictactoe)
 		errMsg[0] = 0;
 		readCounter = 0;
 
-		*/
-		/* Reads input characters one by one and discards them from stdin *//*
+		
+		/* Reads input characters one by one and discards them from stdin */
 		while((asciiValue = getchar()) != EOF && (asciiValue != '\n')){
 			if(readCounter == 0)
 				inputRow = asciiValue;
@@ -97,7 +95,7 @@ void readField(int *row, int *col, game *tictactoe)
 bool occupied(int row, int col, game *tictactoe)
 {
 	char field;
-	field = arr[row][col];
+	field = tictactoe->table[row][col];
 
 	if(field != '_'){
 		printf("Field is already occupied, try again: \n");
@@ -114,13 +112,13 @@ void writeTable(int row, int col, game *tictactoe)
 	i = row;
 	j = col;	
 
-	if (*counter%2 != 0)
-		arr[i][j] = 'X';
+	if (tictactoe->tracker%2 != 0)
+		tictactoe->table[i][j] = 'X';
 	else
-		arr[i][j] = 'O';
+		tictactoe->table[i][j] = 'O';
 
-	*counter += 1;
+	tictactoe->tracker += 1;
 }
 
-*/
+
 
