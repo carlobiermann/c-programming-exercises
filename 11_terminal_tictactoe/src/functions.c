@@ -4,34 +4,34 @@
 #include <string.h>
 #include "functions.h"
 
-void readMenuStatus(char *userInput) 
+void readMode(char *mode) 
 {
-	bool wrongStatus = true;
+	bool validMode = false;
 	int asciiValue = 0; 
-	int inputStatus = 0;
-	int readCounter;	
+	int readCounter;
+	int userInput = 0;	
 	char errMsg[26];
 
-	while(wrongStatus){
+	while(validMode != true){
 		errMsg[0] = 0;
 		readCounter = 0;
 
 		while((asciiValue = getchar()) != EOF && (asciiValue != '\n')){
 			if(readCounter == 0)
-				inputStatus = asciiValue;
+				userInput = asciiValue;
 			readCounter++;
 		}
-		switch(inputStatus){
+		switch(userInput){
 			case 83:
-				*userInput = 'S';
-				wrongStatus = false;
+				*mode = 'S';
+				validMode = true;
 				break;
 			case 88:
-				*userInput = 'X';
-				wrongStatus = false;
+				*mode = 'X';
+				validMode = true;
 				break;
 			default:
-				wrongStatus = true;
+				validMode = false;
 				strcpy(errMsg,"Invalid input, try again:");
 				break;
 
