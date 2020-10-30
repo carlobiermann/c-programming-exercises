@@ -11,7 +11,7 @@ int main()
 	int r,c;
 
 	bool status = true;
-	char mode;
+	char mode = '\0';
 
 	tictactoe.gamesPlayed = 0;
 	tictactoe.playerOneScore = 0;
@@ -45,7 +45,10 @@ int main()
 
 		switch(mode){
 			case 'S':
-				printf("Starting game... \n");
+				printGame(&tictactoe);
+				do{
+					playGame(&tictactoe);
+				} while (continueGame(&tictactoe));
 				break;
 
 			case 'X': 

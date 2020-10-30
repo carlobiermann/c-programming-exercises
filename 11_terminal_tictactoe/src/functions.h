@@ -12,6 +12,12 @@ typedef struct Game{
 } game;
 
 void readMode(char *mode);
+void printGame(game *tictactoe);
+void playGame(game *tictactoe);
+void readField(game *tictactoe);
+bool occupied(game *tictactoe);
+void writeTable(game *tictactoe);
+bool continueGame(game *tictactoe);
 
 
 #endif
