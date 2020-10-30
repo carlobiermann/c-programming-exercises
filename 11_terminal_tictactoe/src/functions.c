@@ -162,7 +162,7 @@ void writeTable(game *tictactoe)
 	r = tictactoe->playerRow;
 	c = tictactoe->playerCol;	
 
-	if (tictactoe->tracker%2 != 0)
+	if(tictactoe->tracker %2 != 0)
 		tictactoe->table[r][c] = 'X';
 	else
 		tictactoe->table[r][c] = 'O';
@@ -172,10 +172,81 @@ void writeTable(game *tictactoe)
 
 bool continueGame(game *tictactoe)
 {
-	if (tictactoe->tracker <= 9)
-		return true;
-	else{
-		printf("Full...\n");
+	if(winningLine(tictactoe)){
+		if((tictactoe->tracker - tictactoe->gamesPlayed) %2){
+			printf("Player 2  won! \n");
+			tictactoe->playerTwoScore++;
+		} else {
+			printf("Player 1  won! \n");
+			tictactoe->playerOneScore++;
+		}
 		return false;
+	} else if((tictactoe->tracker - tictactoe->gamesPlayed) == 9){
+		printf("It's a draw! \n");
+		return false;
+	}
+	return true;
+
+}
+
+bool winningLine(game *tictactoe) 
+{
+	int res[8];
+	int i;
+
+	/* WINNING ROWS */ 
+	res[0] =  tictactoe->table[1][1] 
+		+ tictactoe->table[1][2] 
+		+ tictactoe->table[1][3];
+
+	res[1] =  tictactoe->table[2][1]
+		+ tictactoe->table[2][2]
+		+ tictactoe->table[1][3];
+
+	res[2] =  tictactoe->table[3][1]
+		+ tictactoe->table[3][2]
+		+ tictactoe->table[3][3];
+
+	/* WINNING COLUMNS */ 
+	res[3] =  tictactoe->table[1][1]
+		+ tictactoe->table[2][1]
+		+ tictactoe->table[3][1];
+
+	res[4] =  tictactoe->table[1][2]
+		+ tictactoe->table[2][2]
+		+ tictactoe->table[3][2];
+
+	res[5] =  tictactoe->table[1][3]
+		+ tictactoe->table[2][3]
+		+ tictactoe->table[3][3];
+
+	/* WINNING DIAGONALS */
+	res[6] =  tictactoe->table[1][1]
+		+ tictactoe->table[2][2]
+		+ tictactoe->table[3][3];
+
+	res[7] =  tictactoe->table[1][3]
+		+ tictactoe->table[2][2]
+		+ tictactoe->table[3][1];
+
+	for(i = 0; i <= 7; i++){
+		if((res[i] == 264) || (res[i] == 237)){
+			return true;
+			break;
+		}
+	}
+	return false;	
+}
+
+void updateAndReset(game *tictactoe)
+{
+	int r,c;
+
+	tictactoe->tracker = 1 + tictactoe->gamesPlayed;
+	tictactoe->gamesPlayed++;
+
+	for(r=1; r < 4; r++){
+		for(c=1; c < 4; c++)
+			tictactoe->table[r][c] = '_';
 	}
 }

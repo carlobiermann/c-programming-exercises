@@ -18,6 +18,8 @@ void readField(game *tictactoe);
 bool occupied(game *tictactoe);
 void writeTable(game *tictactoe);
 bool continueGame(game *tictactoe);
+bool winningLine(game *tictactoe);
+void updateAndReset(game *tictactoe);
 
 
 #endif

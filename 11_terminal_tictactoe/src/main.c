@@ -22,13 +22,13 @@ int main()
 	tictactoe.playerCol = 0;
 
 	tictactoe.table[0][0] = ' ';
-	tictactoe.table[1][0] = '1';
-	tictactoe.table[2][0] = '2';
-	tictactoe.table[3][0] = '3';
+	tictactoe.table[1][0] = 'A';
+	tictactoe.table[2][0] = 'B';
+	tictactoe.table[3][0] = 'C';
 
-	tictactoe.table[0][1] = 'A';
-	tictactoe.table[0][2] = 'B';
-	tictactoe.table[0][3] = 'C';
+	tictactoe.table[0][1] = '1';
+	tictactoe.table[0][2] = '2';
+	tictactoe.table[0][3] = '3';
 
 	for(r=1; r < 4; r++){
 		for(c=1; c < 4; c++)
@@ -49,6 +49,7 @@ int main()
 				do{
 					playGame(&tictactoe);
 				} while (continueGame(&tictactoe));
+				updateAndReset(&tictactoe);
 				break;
 
 			case 'X': 
