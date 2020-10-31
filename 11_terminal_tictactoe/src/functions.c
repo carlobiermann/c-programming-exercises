@@ -4,6 +4,8 @@
 #include <string.h>
 #include "functions.h"
 
+/* To read input from stdin one by one while discarding the input characters from the stream.
+ * readCounter = 0 means that only the first character of the input stream will be read and assigned as an ASCII value. */
 void readMode(char *mode) 
 {
 	bool validMode = false;
@@ -43,7 +45,7 @@ void readMode(char *mode)
 
 void printGame(game *tictactoe)
 {
-		int r,c;
+	int r,c;
 
 	printf("\n");
 	printf("****     Games:    %d                                         **** \n", tictactoe->gamesPlayed);
@@ -58,7 +60,8 @@ void printGame(game *tictactoe)
 	printf("\n");
 }
 
-
+/* Reading the input fields and checking if a field is already occupied. When occupied, the user 
+ * will be instructed to enter another field. */
 void playGame(game *tictactoe)
 {
 	do{
@@ -69,6 +72,9 @@ void playGame(game *tictactoe)
 	printGame(tictactoe);
 }
 
+/* Same principle as readMode but this time reading only the FIRST TWO characters one by one from 
+ * the input stream and discarding everything else. Afterwards the assigned ASCII values for row and column
+ * are checked whether these are valid within the game table. */
 void readField(game *tictactoe)
 {
 	bool wrongRow = true;
@@ -80,9 +86,9 @@ void readField(game *tictactoe)
 	int inputCol = 0;
 
 	if(tictactoe->tracker%2 != 0)	
-		printf("PLAYER 1: Please enter a field: \n");
+		printf("**** PLAYER 1: Please enter a field:                         **** \n");
 	else
-		printf("PLAYER 2: Please enter a field: \n");
+		printf("**** PLAYER 2: Please enter a field:                         **** \n");
 
 	while(wrongRow || wrongCol){
 		errMsg[0] = 0;
@@ -107,7 +113,7 @@ void readField(game *tictactoe)
 				wrongRow = false;
 				break;
 			case 67:
-				tictactoe->playerRow  = 3;
+				tictactoe->playerRow = 3;
 				wrongRow = false;
 				break;
 			default:
@@ -136,7 +142,7 @@ void readField(game *tictactoe)
 				break;
 		}
 		if(errMsg[0] != 0)
-			printf("%s \n", errMsg);
+			printf("**** %s                               **** \n", errMsg);
 	}	
 }
 
@@ -149,12 +155,14 @@ bool occupied(game *tictactoe)
 	field = tictactoe->table[r][c];
 
 	if(field != '_'){
-		printf("Field is already occupied, try again: \n");
+		printf("**** Field is already occupied, try again:                   **** \n");
 		return true;
 	} else
 		return false;
 }
 
+/* Writing the game table with the input row and column from the current player and keeping 
+ * track of who made the  move. */
 void writeTable(game *tictactoe)
 {
 	int r, c;
@@ -162,33 +170,42 @@ void writeTable(game *tictactoe)
 	r = tictactoe->playerRow;
 	c = tictactoe->playerCol;	
 
-	if(tictactoe->tracker %2 != 0)
+	if(tictactoe->tracker %2 != 0){
 		tictactoe->table[r][c] = 'X';
-	else
+		tictactoe->lastMove = 1;
+	}
+	else{
 		tictactoe->table[r][c] = 'O';
-
+		tictactoe->lastMove = 2;
+	}
 	tictactoe->tracker += 1;
 }
 
+/* Will check for a winning line inside the game table and check if table is already filled. 'tracker' is always set to 1 (during initialization) 
+ * and set to 1 + 'gamesPlayed' after each game to ensure that PLAYER 1 and PLAYER 2 start each game alternately --> SEE updateAndReset()
+ * Thats why 'tracker' - 'gamesPlayed' will ALWAYS equal to 10 after a total of 9 valid player inputs, filling the game table. */
 bool continueGame(game *tictactoe)
 {
 	if(winningLine(tictactoe)){
-		if((tictactoe->tracker - tictactoe->gamesPlayed) %2){
-			printf("Player 2  won! \n");
-			tictactoe->playerTwoScore++;
-		} else {
-			printf("Player 1  won! \n");
+		if(tictactoe->lastMove == 1){
+			printf("**** PLAYER 1  won!                                          **** \n");
 			tictactoe->playerOneScore++;
+		} else {
+			printf("**** PLAYER 2  won!                                          **** \n");
+			tictactoe->playerTwoScore++;
 		}
 		return false;
-	} else if((tictactoe->tracker - tictactoe->gamesPlayed) == 9){
-		printf("It's a draw! \n");
+	} else if((tictactoe->tracker - tictactoe->gamesPlayed) == 10){
+		printf("**** It's a draw!                                           **** \n");
 		return false;
 	}
 	return true;
 
 }
 
+/* Going through all possible winning lines in a tictactoe game and calculating the summation of ASCII values
+ * inside these potential winning lines. If a line contains three 'X's then its sum of ASCII values = 3 * 88 = 234
+ * If a line contains three 'O's then its sum of ASCII values = 3 * 79 = 237   */
 bool winningLine(game *tictactoe) 
 {
 	int res[8];
@@ -238,12 +255,14 @@ bool winningLine(game *tictactoe)
 	return false;	
 }
 
+/* Updating stats and resetting 'tracker', 'lastMove' and the game table. */
 void updateAndReset(game *tictactoe)
 {
 	int r,c;
 
-	tictactoe->tracker = 1 + tictactoe->gamesPlayed;
 	tictactoe->gamesPlayed++;
+	tictactoe->tracker = 1 + tictactoe->gamesPlayed;
+	tictactoe->lastMove = 0;
 
 	for(r=1; r < 4; r++){
 		for(c=1; c < 4; c++)

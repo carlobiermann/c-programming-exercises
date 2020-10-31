@@ -8,6 +8,7 @@ typedef struct Game{
 	int tracker;
 	int playerRow;
 	int playerCol;
+	int lastMove;
 	char table[4][4];
 } game;
 

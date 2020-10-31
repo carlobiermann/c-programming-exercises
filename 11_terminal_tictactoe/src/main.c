@@ -20,6 +20,7 @@ int main()
 
 	tictactoe.playerRow = 0;
 	tictactoe.playerCol = 0;
+	tictactoe.lastMove = 0;
 
 	tictactoe.table[0][0] = ' ';
 	tictactoe.table[1][0] = 'A';
@@ -53,7 +54,7 @@ int main()
 				break;
 
 			case 'X': 
-				printf("Exit game... \n");
+				printf("**** EXIT game...                                            **** \n");
 				status = false;
 				break;
 		}
