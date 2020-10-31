@@ -48,7 +48,7 @@ int main()
 			case 'S':
 				printGame(&tictactoe);
 				do{
-					playGame(&tictactoe);
+					makeMove(&tictactoe);
 				} while (continueGame(&tictactoe));
 				updateAndReset(&tictactoe);
 				break;

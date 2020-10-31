@@ -62,7 +62,7 @@ void printGame(game *tictactoe)
 
 /* Reading the input fields and checking if a field is already occupied. When occupied, the user 
  * will be instructed to enter another field. */
-void playGame(game *tictactoe)
+void makeMove(game *tictactoe)
 {
 	do{
 		readField(tictactoe);

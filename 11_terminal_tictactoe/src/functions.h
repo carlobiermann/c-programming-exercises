@@ -14,7 +14,7 @@ typedef struct Game{
 
 void readMode(char *mode);
 void printGame(game *tictactoe);
-void playGame(game *tictactoe);
+void makeMove(game *tictactoe);
 void readField(game *tictactoe);
 bool occupied(game *tictactoe);
 void writeTable(game *tictactoe);
