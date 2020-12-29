@@ -6,4 +6,4 @@ This is my collection of programming exercises in C to explore various features 
 
 | Project                                                   |
 | --------------------------------------------------------- |
-| [Terminal Tic Tac Toe](/tree/master/11_terminal_tictactoe)| 
+| [Terminal Tic Tac Toe](/11_terminal_tictactoe)| 
