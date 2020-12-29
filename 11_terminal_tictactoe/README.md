@@ -5,4 +5,4 @@ The game will keep track of the player scores and the number of games you've pla
 
 ## Screenshot
 
-![screenshot](https://github.com/carlobiermann/c-programming-exercises/master/11_terminal_tictactoe/pics/terminal-tictactoe.jpg)
+![screenshot](https://github.com/carlobiermann/c-programming-exercises/blob/master/11_terminal_tictactoe/pics/terminal-tictactoe.jpg)
