@@ -4,6 +4,6 @@ This is my collection of programming exercises in C to explore various features 
 
 ## Complete Projects
 
-| Project                                                   |
-| --------------------------------------------------------- |
-| [Terminal Tic Tac Toe](/11_terminal_tictactoe)| 
+|Nr  | Project                                      |
+|----| ---------------------------------------------|
+|11  |[Terminal Tic Tac Toe](/11_terminal_tictactoe)| 
